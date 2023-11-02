@@ -1,3 +1,26 @@
+$main-color: #E72744;
+$secondary-color: #fff;
+$border-color: #000;
+$background-color: #29303E;
+$text-color: #444;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    user-select: none;
+}
+
+body {
+
+    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    background: $background-color;
+}
+
+
+
 .content_text {
     h2 {
         color: black;
@@ -53,36 +76,17 @@
             margin-bottom: 0px;
             color: #65451F;
         }
+
     }
-}
-
-
-$main-color: #E72744;
-$secondary-color: #fff;
-$border-color: #000;
-$background-color: #29303E;
-$text-color: #444;
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: all 0.3s;
-    user-select: none;
-}
-
-body {
-
-    min-height: 100vh;
-    font-family: 'Open Sans', sans-serif;
-    background: $background-color;
 }
 
 .mytra-login {
     width: 800px;
-    height: 480px;
+    // height: 480px;
     display: flex;
     margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
 
     form {
         background: $secondary-color;
@@ -181,6 +185,13 @@ body {
         background-size: cover;
         background-position: 33%;
     }
+
+    .signup_poster {
+        width: 50%;
+        background: url('../src/assets/signupbanner.jpg');
+        background-size: cover;
+        background-position: 33%;
+    }
 }
 
 @media (min-width: 0px) and (max-width: 800px) {
@@ -205,9 +216,10 @@ body {
 }
 
 .exploremore {
-    button{
+    button {
         background-color: #ccc;
     }
+
     color: #65451F !important;
     border: 1px solid #d4d4d4;
     font-size: 15px;
@@ -220,3 +232,109 @@ body {
     background-color: #65451F;
     color: #d4d4d4;
 }
+
+.btn_gap {
+    display: flex;
+    gap: 30px;
+}
+
+.main-bg {
+    background: #e6ccd0e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .center-content {
+        background: #fff;
+        padding: 20px;
+        max-width: 760px;
+        width: 90%;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+        .forgot-section {
+            text-align: left;
+            margin-top: 20px;
+
+            h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            input {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+
+            button {
+                background: $main-color;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            a {
+                text-decoration: none;
+                color: $main-color;
+            }
+
+            // Media queries for responsiveness
+            @media (max-width: 768px) {
+                max-width: 100%;
+            }
+
+            @media (max-width: 480px) {
+                h2 {
+                    font-size: 20px;
+                }
+
+                p {
+                    font-size: 14px;
+                }
+
+                input {
+                    font-size: 12px;
+                }
+
+                button {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+.password-input {
+    display: flex;
+    align-items: center;
+  
+    input {
+      flex: 1;
+    }
+  
+    .password-toggle {
+      cursor: pointer;
+      color: #777;
+  
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+  

@@ -9,6 +9,10 @@ import NavbarHeader from "../src/auth/Navbar.js"
 import Signup from './auth/signup';
 import ForgotPassword from './auth/forgotPassword';
 import NewPassword from './auth/newpassword';
+import ReactDOM from 'react-dom';
+import Imageslider from "../src/comman/slider"
+import ProductPage from "../src/pages/productpage"
+import ProductList from './pages/productList';
 
 function App() {
   return (
@@ -23,6 +27,8 @@ function App() {
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/forgot-password' element={<ForgotPassword/>}></Route>
           <Route path='/new-password' element={<NewPassword/>}></Route>
+          <Route path='/product' element={<ProductPage/>}></Route>
+
         </Routes>
       </div>
     </Router>

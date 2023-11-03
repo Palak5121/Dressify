@@ -7,7 +7,8 @@ import { SlHandbag } from 'react-icons/sl'
 import '../comman.scss';
 import Modal from 'react-bootstrap/Modal';
 import Login from "../auth/login.js"
-
+import Signup from '../auth/signup'
+import Slider from "../comman/slider.js"
 
 function App() {
     const [searchValue, setSearchValue] = useState("");
@@ -15,6 +16,8 @@ function App() {
     const [test, setTest] = useState('')
     const [isLogin, setIsLogin] = useState(true);
     const [show, setShow] = useState(false);
+    const [showLogin, setShowLogin] = useState(true);
+    const [showSignup, setShowSignup] = useState(false);
 
 
     const handleMouseEnter = () => {
@@ -62,11 +65,19 @@ function App() {
     return (
         <div>
             <Modal show={show} onHide={handleClose} size="xl">
-                <Modal.Header closeButton>
+                {showLogin && <> <Modal.Header closeButton>
                     <Modal.Title>Login</Modal.Title>
                 </Modal.Header>
-                <Login />
-             
+                    <Login setShowLogin={setShowLogin} setShowSignup={setShowSignup}/></>}
+                {showSignup && (
+                    <Modal show={showSignup} onHide={handleClose} size="xl">
+                        <Modal.Header closeButton>
+                            <Modal.Title>Signup</Modal.Title>
+                        </Modal.Header>
+                        <Signup setShowLogin={setShowLogin} setShowSignup={setShowSignup}/>
+                    </Modal>
+                )}
+
             </Modal>
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand href="#home">Dressify</Navbar.Brand>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Signup from "../../src/auth/signup.js";
 
-export default function Login() {
+export default function Login({setShowLogin,setShowSignup}) {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -93,7 +93,7 @@ export default function Login() {
 
   return (
     <div>
-      <div className="mytra-login">
+      <div className="user-login">
         <form onSubmit={handleSubmit}>
           <h2>Dressify</h2>
           <h1 className="heading">
@@ -143,7 +143,7 @@ export default function Login() {
 
           <div className='btn_gap'>
             <button className="login">Signup</button>
-            <button className="signup">Login</button>
+            <button className="signup" onClick={()=>{setShowLogin(true);setShowSignup(false)}}>Login</button>
           </div>
         </form>
 

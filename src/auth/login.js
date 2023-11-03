@@ -5,10 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Signup from "../../src/auth/signup.js";
 
-export default function Login() {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
-
+export default function Login({ setShowLogin, setShowSignup }) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,22 +18,8 @@ export default function Login() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClose = () => {
-    setShowLogin(false);
-    setShowSignup(false);
-  };
-
-  const handleShowLogin = () => {
-    setShowLogin(true);
-  };
-
-  const handleShowSignup = () => {
-    setShowSignup(true);
-  };
-
   const handleSignUpDetail = (e) => {
     e.preventDefault();
-    handleShowSignup();
   };
 
   const handleInputChange = (e) => {
@@ -58,15 +41,26 @@ export default function Login() {
     if (!formData.email) {
       isValid = false;
       errors.email = 'Email is required';
+    } else if (!isValidEmail(formData.email)) {
+      isValid = false;
+      errors.email = 'Invalid email format';
     }
 
     if (!formData.password) {
       isValid = false;
       errors.password = 'Password is required';
+    } else if (formData.password.length < 8) {
+      isValid = false;
+      errors.password = 'Password must be at least 8 characters long';
     }
 
     setFormErrors(errors);
     return isValid;
+  };
+
+  const isValidEmail = (email) => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
   };
 
   const handleSubmit = (e) => {
@@ -74,30 +68,13 @@ export default function Login() {
     if (validateForm()) {
       console.log('Form is valid, perform login.');
     } else {
+      console.log('Form is invalid. Please correct the errors.');
     }
   };
 
   return (
     <div>
-      {showLogin && (
-        <Modal show={showLogin} onHide={handleClose} size="lg">
-          <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
-          </Modal.Header>
-          <Login/>
-        </Modal>
-      )}
-
-      {showSignup && (
-        <Modal show={showSignup} onHide={handleClose} size="xl">
-          <Modal.Header closeButton>
-            <Modal.Title>Signup</Modal.Title>
-          </Modal.Header>
-          <Signup />
-        </Modal>
-      )}
-
-      <div className="mytra-login">
+      <div className="user-login">
         <form onSubmit={handleSubmit}>
           <h2>Dressify</h2>
           <h1 className="heading">
@@ -139,12 +116,12 @@ export default function Login() {
             <label>
               <input type="checkbox" /> Keep me signed in
             </label>
-            <a href='/forgot-password'>Forget Password?</a>
+            <a href='/forgot-password'>Forgot Password?</a>
           </div>
 
           <div className='btn_gap'>
             <button className="login">Login</button>
-            <button className="signup" onClick={handleSignUpDetail}>
+            <button className="signup" onClick={(e) => { setShowLogin(false); setShowSignup(true); handleSignUpDetail(e) }}>
               Signup
             </button>
           </div>
